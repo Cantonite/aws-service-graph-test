@@ -16,8 +16,11 @@ data "aws_iam_policy_document" "allow_key_usage" {
     effect    = "Allow"
     resources = ["*"]
     actions = [
+      "kms:Encrypt",
+      "kms:Decrypt",
+      "kms:ReEncrypt*",
       "kms:GenerateDataKey*",
-      "kms:Decrypt"
+      "kms:DescribeKey"
     ]
 
     principals {

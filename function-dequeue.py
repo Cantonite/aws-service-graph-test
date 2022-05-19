@@ -1,7 +1,10 @@
 import os
 import boto3
 
-client = boto3.client('s3')
+client = boto3.client(
+    service_name="s3",
+    region_name="eu-west-2"
+)
 
 def handler(event, context):
     for record in event["Records"]:

@@ -51,8 +51,11 @@ resource "aws_iam_policy" "allow_topic_publish" {
 
 data "aws_iam_policy_document" "allow_s3_write" {
   statement {
-    effect    = "Allow"
-    resources = ["${aws_s3_bucket.test_updates.arn}/*"]
+    effect = "Allow"
+    resources = [
+      "${aws_s3_bucket.test_updates.arn}/*",
+      "${aws_s3_bucket.test_updates.arn}"
+    ]
 
     actions = [
       "s3:*",
@@ -73,7 +76,9 @@ data "aws_iam_policy_document" "allow_encrypt_decrypt" {
     actions = [
       "kms:Encrypt",
       "kms:Decrypt",
-      "kms:GenerateDataKey"
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:DescribeKey"
     ]
   }
 }
