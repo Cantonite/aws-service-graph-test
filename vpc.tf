@@ -14,7 +14,7 @@ resource "aws_vpc_endpoint" "s3" {
   vpc_id            = aws_vpc.main.id
   service_name      = "com.amazonaws.${data.aws_region.current.name}.s3"
   vpc_endpoint_type = "Gateway"
-  # policy            = data.aws_iam_policy_document.allow_s3_put.json
+  policy            = data.aws_iam_policy_document.allow_s3_put.json
 }
 
 resource "aws_vpc_endpoint_route_table_association" "s3" {
@@ -64,5 +64,4 @@ resource "aws_vpc_endpoint" "lambda" {
   security_group_ids = [
     aws_vpc.main.default_security_group_id,
   ]
-  policy = data.aws_iam_policy_document.allow_sqs_invoke_lambda.json
 }

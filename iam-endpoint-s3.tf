@@ -9,8 +9,8 @@ data "aws_iam_policy_document" "allow_s3_put" {
       "s3:PutObject"
     ]
     principals {
-      type        = "Service"
-      identifiers = ["lambda.amazonaws.com"]
+      type        = "*"
+      identifiers = ["*"]
     }
   }
 }
